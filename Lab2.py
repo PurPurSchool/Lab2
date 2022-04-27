@@ -4,9 +4,11 @@ def main():
     num_list = get_user_input()
     ave_temp = calc_average_temperature(num_list)
     max_min_list = calc_min_max_temperature(num_list)
+    median_temp = calc_median_temperature(num_list)
     print(num_list)
     print(ave_temp)
     print(max_min_list)
+    print(median_temp)
 
 def display_main_menu():
     print("Enter some numbers separated by commas (e.g.5,67,32)")
@@ -16,6 +18,21 @@ def get_user_input():
     numberarray = numberarray.split(",")
     numberarray = [float(i) for i in numberarray]
     return numberarray
+
+def calc_median_temperature(numberarray):
+    numberarray.sort()
+
+    count = 0
+
+    for i in numberarray:
+        count = count + 1
+
+    index = (count - 1) // 2
+
+    if (count % 2):
+        return numberarray[index]
+    else:
+        return (numberarray[index] + numberarray[index + 1]) / 2.0
 
 def calc_average_temperature(numberarray):
     count = 0
